@@ -55,13 +55,12 @@
             // 
             this.Ball.BackColor = System.Drawing.Color.Transparent;
             this.Ball.Image = ((System.Drawing.Image)(resources.GetObject("Ball.Image")));
-            this.Ball.Location = new System.Drawing.Point(-150, 170);
+            this.Ball.Location = new System.Drawing.Point(-200, 170);
             this.Ball.Name = "Ball";
             this.Ball.Size = new System.Drawing.Size(140, 137);
             this.Ball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Ball.TabIndex = 1;
             this.Ball.TabStop = false;
-            this.Ball.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label1
             // 
@@ -86,7 +85,6 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 60);
             this.label3.TabIndex = 4;
-            this.label3.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label4
             // 

@@ -13,14 +13,11 @@ namespace animation_JonathanandCarmell
 
     public partial class Form1 : Form
     {
-        private double gravity = 0.0001;
-        private double mass = 10;
-        private double forceY;
-        private double forceX = 3;
-        private double time = 1;
-        private double vY = 0;
-        private double vX = 1;
-        private Label[] clouds = new Label[8];
+        private double gravity = 0.0009; //גרביטציה
+        private double time = 1;//ספירת הזמן שעבר
+        private double velocityY = 0;//המהירות של הגוף בציר וואי
+        private double velocityX = 7;//המהירות של הגוף בציר איקס
+        private Label[] clouds = new Label[8];// מערך של כל העננים
 
 
         public Form1()
@@ -28,7 +25,7 @@ namespace animation_JonathanandCarmell
             InitializeComponent();
             Setarr();
         }
-
+        //פעולה המכניסה את העננים לתוך המערך
         public void Setarr()
         {
             clouds[0] = label1;
@@ -41,44 +38,37 @@ namespace animation_JonathanandCarmell
             clouds[7] = label8;
         }
 
+        //הטיימר של הכדור
         private void timer1_Tick(object sender, EventArgs e)
         {
-                vY = vY + gravity * time;
-                if (Ball.Top + vY * time <= 285)
+                velocityY = velocityY + gravity * time;//חישוב המהירות
+                if (Ball.Top + velocityY * time <= 285)// אם הכדור לא הגיע לרצפה 
                 {
-                    Ball.Top += Convert.ToInt32(vY * time);
-                    time++;
+                    Ball.Top += Convert.ToInt32(velocityY * time);
+
                 }
-                else
+            else //אם הכדור הגיע לרצפה
                 {
-                    vY = -0.75 * vY;
-                    forceX = 0.95 * forceX;
+                    velocityY = -0.75 * velocityY;//תהפוך את המהירות ותוריד קצת בגלל חיכוך
+                    velocityX = 0.95 * velocityX;//תוריד את המהירות בגלל חיכוך
                 }
-
-                vX = forceX;
-                Ball.Left += Convert.ToInt32(vX);
-            
-
-             
-
+            Ball.Left += Convert.ToInt32(velocityX);
+            time++;//ספירה של הזמן
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
+        //הטיימר של העננים
         private void timer2_Tick(object sender, EventArgs e)
         {
-
+            //לולאת פור שמזיזה את העננים
             for (int i = 0; i < clouds.Length; i++)
             {
-                if (clouds[i].Left < 600)
+                if (clouds[i].Left < 600)//אם העננים לא יצאו מהפריים תזיז אותם
                 {
                     clouds[i].Left += 1;
                 }
-                else
+                else// אם הם כן יצאו מהפריים תחזיר אותם להתחלה
                 {
                     clouds[i].Left = -100;
                 }
